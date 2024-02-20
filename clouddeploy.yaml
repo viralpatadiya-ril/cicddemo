@@ -1,0 +1,29 @@
+apiVersion: deploy.cloud.google.com/v1
+kind: DeliveryPipeline
+metadata:
+  name: gdce
+description: main application pipeline
+serialPipeline:
+  stages:
+  - targetId: qsdev
+    profiles: []
+  - targetId: qsprod
+    profiles: []
+---
+
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+  name: qsdev
+description: development cluster
+anthosCluster:
+  membership: projects/accops-poc-gdc-e/locations/global/memberships/jio-edge-cluster-01
+---
+
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+  name: qsprod
+description: production cluster
+anthosCluster:
+  membership: projects/accops-poc-gdc-e/locations/global/memberships/jio-edge-cluster-02
